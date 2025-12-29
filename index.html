@@ -73,7 +73,7 @@
       let order = shuffle([1,2,3,4,5]);
       for (let idx of order) {
         document.getElementById('icon'+idx).classList.add('show');
-        await sleep(900); 
+        await sleep(2000); 
         document.getElementById('icon'+idx).classList.remove('show');
         await sleep(200); 
       }
@@ -81,4 +81,5 @@
     }
   </script>
 </body>
+
 </html>
