@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mechanic 2: Find Tarith</title>
+  <style>
+    body {
+      background: #f4faff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 16px;
+      border: 2px solid #b3e0ff;
+      box-shadow: 0 2px 12px #a3d8f4a0;
+      background-color: #e9f8ff;
+      display: none;
+      margin: 30px auto;
+    }
+    .show {
+      display: block;
+    }
+    button {
+      padding: 10px 28px;
+      background: #6dd5fa;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #b3e0ff90;
+      transition: background 0.2s;
+      margin-top: 20px;
+    }
+    button:active { background: #2193b0; }
+  </style>
+</head>
+<body>
+  <div id="icon-container">
+    <img class="icon-img" id="icon1" src="icon1.jpg" alt="icon1">
+    <img class="icon-img" id="icon2" src="icon2.jpg" alt="icon2">
+    <img class="icon-img" id="icon3" src="icon3.jpg" alt="icon3">
+    <img class="icon-img" id="icon4" src="icon4.jpg" alt="icon4">
+    <img class="icon-img" id="icon5" src="icon5.jpg" alt="icon5">
+  </div>
+  <button id="start-btn" onclick="startShow()">Start</button>
+  <script>
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function startShow() {
+      document.getElementById('start-btn').disabled = true;
+    
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('icon'+i).classList.remove('show');
+      }
+     
+      let order = shuffle([1,2,3,4,5]);
+      for (let idx of order) {
+        document.getElementById('icon'+idx).classList.add('show');
+        await sleep(900); 
+        document.getElementById('icon'+idx).classList.remove('show');
+        await sleep(200); 
+      }
+      document.getElementById('start-btn').disabled = false;
+    }
+  </script>
+</body>
+</html>
